@@ -6,6 +6,7 @@ const useMovieSearch = () => {
 
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const { searchInput, searchResult, savedMovies } = state;
+  const containsResults = !!searchResult > 0;
 
   const handleMovieSearch = e => {
     dispatch({ type: 'setSearchInput', payload: e.target.value });
@@ -31,6 +32,7 @@ const useMovieSearch = () => {
       searchInput,
       searchResult,
       savedMovies,
+      containsResults,
     },
   };
 };
