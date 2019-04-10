@@ -7,8 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import Badge from '@material-ui/core/Badge';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import WatchLaterOutlinedIcon from '@material-ui/icons/WatchLaterOutlined';
 
 import { useAppState } from '../store';
 
@@ -69,15 +71,8 @@ const styles = theme => ({
     },
   },
   sectionDesktop: {
-    display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'flex',
-    },
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
     },
   },
 });
@@ -86,18 +81,12 @@ const Header = props => {
   const { classes } = props;
   const { movieSearch } = useAppState();
   const { handleMovieSearch } = movieSearch;
+  const { savedMovies, watchLater } = movieSearch.state;
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography
             className={classes.title}
             variant="h6"
@@ -118,6 +107,19 @@ const Header = props => {
               }}
               onChange={handleMovieSearch}
             />
+          </div>
+          <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+            <IconButton color="inherit">
+              <Badge badgeContent={savedMovies.length} color="secondary">
+                <FavoriteIcon />
+              </Badge>
+            </IconButton>
+            <IconButton color="inherit">
+              <Badge badgeContent={watchLater.length} color="secondary">
+                <WatchLaterOutlinedIcon />
+              </Badge>
+            </IconButton>
           </div>
         </Toolbar>
       </AppBar>

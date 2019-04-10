@@ -8,8 +8,12 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import WatchLaterOutlinedIcon from '@material-ui/icons/WatchLaterOutlined';
+import WatchLaterIcon from '@material-ui/icons/WatchLater';
 import IconButton from '@material-ui/core/IconButton';
+import red from '@material-ui/core/colors/red';
+import blue from '@material-ui/core/colors/blue';
 
 import { useAppState } from '../store';
 
@@ -39,20 +43,24 @@ const styles = theme => ({
   cardActions: {
     padding: 0,
   },
-  watchLater: {
-    marginLeft: 'auto !important',
-  },
   icon: {
     margin: 0,
+  },
+  favoriteIcon: {
+    color: red[400],
+  },
+  watchLaterIcon: {
+    marginLeft: 'auto !important',
+    color: blue[400],
   },
 });
 
 const MovieList = props => {
   const { classes } = props;
   const { movieSearch } = useAppState();
+  const { handleFavoriteMovie, handleWatchLater } = movieSearch;
   const { searchResult, containsResults } = movieSearch.state;
   if (!containsResults) {
-    console.log('asd :', searchResult);
     return null;
   }
 
@@ -87,16 +95,26 @@ const MovieList = props => {
             </CardContent>
             <CardActions className={classes.cardActions}>
               <IconButton
-                className={classes.icon}
+                className={`${classes.icon} ${classes.favoriteIcon}`}
                 aria-label="Add to favorites"
+                onClick={() => {
+                  handleFavoriteMovie(movie);
+                }}
               >
-                <FavoriteBorderIcon />
+                {movie.favorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
               </IconButton>
               <IconButton
-                className={`${classes.icon} ${classes.watchLater}`}
+                className={`${classes.icon} ${classes.watchLaterIcon}`}
                 aria-label="Watch later"
+                onClick={() => {
+                  handleWatchLater(movie);
+                }}
               >
-                <WatchLaterOutlinedIcon />
+                {movie.watchLater ? (
+                  <WatchLaterIcon />
+                ) : (
+                  <WatchLaterOutlinedIcon />
+                )}
               </IconButton>
             </CardActions>
           </Card>

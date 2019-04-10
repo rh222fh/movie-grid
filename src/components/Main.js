@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import MovieList from './MovieList';
@@ -20,7 +19,7 @@ const styles = theme => ({
   },
 });
 
-function Album(props) {
+const Main = props => {
   const { classes } = props;
 
   return (
@@ -32,10 +31,6 @@ function Album(props) {
       </main>
     </React.Fragment>
   );
-}
-
-Album.propTypes = {
-  classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Album);
+export default withStyles(styles)(Main);
