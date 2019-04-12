@@ -1,9 +1,19 @@
 import React from 'react';
 import { initialState, reducer } from './state';
 
+function init(state) {
+  const savedMovies = localStorage.getItem('savedMovies');
+  if (savedMovies) {
+    state.savedMovies = JSON.parse(savedMovies);
+  }
+  console.log('savedMovies :', savedMovies);
+  console.log('state :', state);
+  return state;
+}
+
 const useMovieSearch = () => {
   const apiKey = process.env.REACT_APP_TMDB_API_KEY;
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  const [state, dispatch] = React.useReducer(reducer, initialState, init);
   const {
     searchInput,
     searchResult,
@@ -13,8 +23,17 @@ const useMovieSearch = () => {
   } = state;
   const containsResults = !!searchResult > 0;
 
+  React.useEffect(() => {
+    localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+    console.log('saved to local storage');
+  }, [savedMovies]);
+
   const handleMovieSearch = e => {
     dispatch({ type: 'setSearchInput', payload: e.target.value });
+  };
+
+  const clearSearch = () => {
+    dispatch({ type: 'setSearchInput', payload: '' });
   };
 
   React.useEffect(() => {
@@ -36,26 +55,18 @@ const useMovieSearch = () => {
       .catch(error => console.log(error));
   }, [searchInput, savedMovies, watchLater]);
 
-  const handleFavoriteMovie = data => {
-    let movie = {
-      id: data.id,
-      favorite: true,
-    };
-
-    if (savedMovies.find(m => m.id === data.id)) {
+  const handleFavoriteMovie = movie => {
+    movie.favorite = true;
+    if (savedMovies.find(m => m.id === movie.id)) {
       dispatch({ type: 'removeFavorite', payload: movie });
     } else {
       dispatch({ type: 'addFavorite', payload: movie });
     }
   };
 
-  const handleWatchLater = data => {
-    let movie = {
-      id: data.id,
-      watchLater: true,
-    };
-
-    if (watchLater.find(m => m.id === data.id)) {
+  const handleWatchLater = movie => {
+    movie.watchLater = true;
+    if (watchLater.find(m => m.id === movie.id)) {
       dispatch({ type: 'removeWatchLater', payload: movie });
     } else {
       dispatch({ type: 'addWatchLater', payload: movie });
@@ -74,6 +85,7 @@ const useMovieSearch = () => {
     handleMovieSearch,
     handleFavoriteMovie,
     handleWatchLater,
+    clearSearch,
     state: {
       ...state,
       searchInput,

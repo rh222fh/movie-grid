@@ -7,6 +7,7 @@ export const initialState = {
 };
 
 export function reducer(state, action) {
+  console.log('state :', state);
   const setPayload = key => ({ ...state, [key]: action.payload });
   switch (action.type) {
     case 'setSearchInput':
