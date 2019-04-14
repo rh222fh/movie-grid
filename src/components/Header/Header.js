@@ -11,7 +11,9 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   Search,
   Favorite,
+  FavoriteBorder,
   LocalMovies,
+  WatchLater,
   WatchLaterOutlined,
 } from '@material-ui/icons';
 import styles from '../../styles';
@@ -68,7 +70,7 @@ const Header = ({ classes, location }) => {
               onClick={() => clearSearch()}
             >
               <Badge badgeContent={savedMovies.length} color="secondary">
-                <Favorite />
+                {savedMovies.length !== 0 ? <Favorite /> : <FavoriteBorder />}
               </Badge>
             </IconButton>
 
@@ -80,7 +82,11 @@ const Header = ({ classes, location }) => {
               onClick={() => clearSearch()}
             >
               <Badge badgeContent={watchLater.length} color="secondary">
-                <WatchLaterOutlined />
+                {watchLater.length !== 0 ? (
+                  <WatchLater />
+                ) : (
+                  <WatchLaterOutlined />
+                )}
               </Badge>
             </IconButton>
           </div>

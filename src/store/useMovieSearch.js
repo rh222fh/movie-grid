@@ -3,30 +3,39 @@ import { initialState, reducer } from './state';
 
 function init(state) {
   const savedMovies = localStorage.getItem('savedMovies');
+  const watchLater = localStorage.getItem('watchLater');
   if (savedMovies) {
     state.savedMovies = JSON.parse(savedMovies);
+  }
+  if (watchLater) {
+    state.watchLater = JSON.parse(watchLater);
   }
   console.log('savedMovies :', savedMovies);
   console.log('state :', state);
   return state;
 }
 
+const apiKey = process.env.REACT_APP_TMDB_API_KEY;
+
 const useMovieSearch = () => {
-  const apiKey = process.env.REACT_APP_TMDB_API_KEY;
   const [state, dispatch] = React.useReducer(reducer, initialState, init);
   const {
     searchInput,
     searchResult,
     savedMovies,
     watchLater,
-    isModalOpen,
+    showModal,
+    videoURL,
   } = state;
   const containsResults = !!searchResult > 0;
 
   React.useEffect(() => {
     localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
-    console.log('saved to local storage');
   }, [savedMovies]);
+
+  React.useEffect(() => {
+    localStorage.setItem('watchLater', JSON.stringify(watchLater));
+  }, [watchLater]);
 
   const handleMovieSearch = e => {
     dispatch({ type: 'setSearchInput', payload: e.target.value });
@@ -73,6 +82,24 @@ const useMovieSearch = () => {
     }
   };
 
+  const handleViewTrailer = movie => {
+    const apiUrl = `https://api.themoviedb.org/3/movie/${
+      movie.id
+    }/videos?api_key=${apiKey}`;
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(payload => {
+        console.log('payload :', payload);
+        dispatch({ type: 'setVideoURL', payload: payload.results[0].key });
+        dispatch({ type: 'setShowModal', payload: true });
+      })
+      .catch(error => console.log(error));
+  };
+
+  const handleTrailerClose = movie => {
+    dispatch({ type: 'setShowModal', payload: false });
+  };
+
   /* const handleModalOpen = data => {
     dispatch({ type: 'setIsModalOpen', payload: true });
   };
@@ -86,13 +113,16 @@ const useMovieSearch = () => {
     handleFavoriteMovie,
     handleWatchLater,
     clearSearch,
+    handleViewTrailer,
+    handleTrailerClose,
     state: {
       ...state,
       searchInput,
       searchResult,
       savedMovies,
       containsResults,
-      isModalOpen,
+      showModal,
+      videoURL,
     },
   };
 };

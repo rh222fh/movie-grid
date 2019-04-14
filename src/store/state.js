@@ -3,13 +3,17 @@ export const initialState = {
   movieList: [],
   savedMovies: [],
   watchLater: [],
-  isModalOpen: false,
+  showModal: false,
+  videoURL: '',
 };
 
 export function reducer(state, action) {
-  console.log('state :', state);
   const setPayload = key => ({ ...state, [key]: action.payload });
   switch (action.type) {
+    case 'setShowModal':
+      return setPayload('showModal');
+    case 'setVideoURL':
+      return setPayload('videoURL');
     case 'setSearchInput':
       return setPayload('searchInput');
     case 'setSearchResult':

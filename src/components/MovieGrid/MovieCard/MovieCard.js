@@ -7,6 +7,7 @@ import {
   Grid,
   Typography,
   IconButton,
+  Button,
 } from '@material-ui/core';
 import {
   FavoriteBorder as FavoriteInactive,
@@ -22,7 +23,11 @@ import { useAppState } from '../../../store';
 
 const MovieCard = ({ classes, movie }) => {
   const { movieSearch } = useAppState();
-  const { handleFavoriteMovie, handleWatchLater } = movieSearch;
+  const {
+    handleFavoriteMovie,
+    handleWatchLater,
+    handleViewTrailer,
+  } = movieSearch;
 
   return (
     <Grid zeroMinWidth item key={movie.id} sm={6} md={4} lg={3}>
@@ -42,7 +47,11 @@ const MovieCard = ({ classes, movie }) => {
           >
             {movie.title}
           </Typography>
-          <Typography gutterBottom component="p" className={classes.cardTitle}>
+          <Typography
+            gutterBottom
+            component="p"
+            className={classes.cardSubTitle}
+          >
             {movie.release_date.substr(0, 4)}
           </Typography>
         </CardContent>
@@ -56,6 +65,10 @@ const MovieCard = ({ classes, movie }) => {
           >
             {movie.favorite ? <FavoriteActive /> : <FavoriteInactive />}
           </IconButton>
+          <Button size="small" onMouseDown={() => handleViewTrailer(movie)}>
+            View Trailer
+          </Button>
+
           <IconButton
             className={`${classes.icon} ${classes.watchLaterIcon}`}
             aria-label="Watch later"

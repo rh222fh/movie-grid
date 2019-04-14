@@ -7,9 +7,28 @@ import classNames from 'classnames';
 import styles from '../styles';
 import { withStyles } from '@material-ui/core/styles';
 
+import { FavoriteBorder } from '@material-ui/icons';
+
 const Favorites = ({ classes }) => {
   const { movieSearch } = useAppState();
   let { savedMovies } = movieSearch.state;
+
+  if (savedMovies.length === 0) {
+    return (
+      <div className={classNames(classes.layout, classes.cardGrid)}>
+        <FavoriteBorder className={classes.homeSearchIcon} />
+
+        <Typography
+          variant="h2"
+          component="h1"
+          gutterBottom
+          className={classes.homeTitle}
+        >
+          No movies added to Favorites
+        </Typography>
+      </div>
+    );
+  }
 
   return (
     <div className={classNames(classes.layout, classes.cardGrid)}>

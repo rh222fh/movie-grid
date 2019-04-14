@@ -1,18 +1,11 @@
 import React from 'react';
 import MovieGrid from '../components/MovieGrid/MovieGrid';
-
 import { useAppState } from '../store';
 import { Typography } from '@material-ui/core';
 import classNames from 'classnames';
 import styles from '../styles';
 import { withStyles } from '@material-ui/core/styles';
-
-import {
-  Search,
-  Favorite,
-  LocalMovies,
-  WatchLaterOutlined,
-} from '@material-ui/icons';
+import { Search } from '@material-ui/icons';
 
 const Home = ({ classes }) => {
   const { movieSearch } = useAppState();

@@ -97,7 +97,11 @@ const styles = theme => ({
     padding: '8px 16px 0 16px',
   },
   cardTitle: {
-    fontSize: 14,
+    fontSize: 16,
+    marginBottom: 0,
+  },
+  cardSubTitle: {
+    fontSize: 12,
     marginBottom: 0,
   },
   cardActions: {
@@ -105,6 +109,9 @@ const styles = theme => ({
   },
   icon: {
     margin: 0,
+  },
+  button: {
+    marginLeft: 'auto !important',
   },
   favoriteIcon: {
     color: '#9f3e72',
