@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Favorites from './pages/Favorites';
+import Header from './components/Header/Header';
 import Home from './pages/Home';
+import Favorites from './pages/Favorites';
 import WatchLater from './pages/WatchLater';
 import { createMuiTheme } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';

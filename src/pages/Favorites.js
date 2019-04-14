@@ -1,17 +1,15 @@
 import React from 'react';
 import MovieGrid from '../components/MovieGrid/MovieGrid';
-
 import { useAppState } from '../store';
 import { Typography } from '@material-ui/core';
 import classNames from 'classnames';
 import styles from '../styles';
 import { withStyles } from '@material-ui/core/styles';
-
 import { FavoriteBorder } from '@material-ui/icons';
 
 const Favorites = ({ classes }) => {
   const { movieSearch } = useAppState();
-  let { savedMovies } = movieSearch.state;
+  const { savedMovies } = movieSearch.state;
 
   if (savedMovies.length === 0) {
     return (

@@ -7,7 +7,6 @@ import {
   InputBase,
   Badge,
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
 import {
   Search,
   Favorite,
@@ -17,6 +16,7 @@ import {
   WatchLaterOutlined,
 } from '@material-ui/icons';
 import styles from '../../styles';
+import { withStyles } from '@material-ui/core/styles';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 import { useAppState } from '../../store';
 
@@ -45,7 +45,7 @@ const Header = ({ classes, location }) => {
             color="inherit"
             noWrap
           >
-            FlickFinder
+            MovieGrid
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

@@ -5,12 +5,11 @@ import { Typography } from '@material-ui/core';
 import classNames from 'classnames';
 import styles from '../styles';
 import { withStyles } from '@material-ui/core/styles';
-
 import { WatchLaterOutlined } from '@material-ui/icons';
 
 const WatchLater = ({ classes }) => {
   const { movieSearch } = useAppState();
-  let { watchLater } = movieSearch.state;
+  const { watchLater } = movieSearch.state;
 
   if (watchLater.length === 0) {
     return (

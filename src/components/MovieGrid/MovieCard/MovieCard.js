@@ -18,7 +18,7 @@ import {
 import classNames from 'classnames';
 import styles from '../../../styles';
 import { withStyles } from '@material-ui/core/styles';
-
+import placeholder from '../../../assets/placeholder.png';
 import { useAppState } from '../../../store';
 
 const MovieCard = ({ classes, movie }) => {
@@ -34,7 +34,11 @@ const MovieCard = ({ classes, movie }) => {
       <Card className={classes.card} elevation={2}>
         <CardMedia
           className={classes.cardMedia}
-          image={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+          image={
+            movie.poster_path !== null
+              ? `https://image.tmdb.org/t/p/w342/${movie.poster_path}`
+              : placeholder
+          }
           title={movie.title}
         />
         <CardContent className={classes.cardContent}>
@@ -65,10 +69,13 @@ const MovieCard = ({ classes, movie }) => {
           >
             {movie.favorite ? <FavoriteActive /> : <FavoriteInactive />}
           </IconButton>
-          <Button size="small" onMouseDown={() => handleViewTrailer(movie)}>
+          <Button
+            size="small"
+            onMouseDown={() => handleViewTrailer(movie)}
+            className={classes.button}
+          >
             View Trailer
           </Button>
-
           <IconButton
             className={`${classes.icon} ${classes.watchLaterIcon}`}
             aria-label="Watch later"

@@ -1,5 +1,5 @@
 {
-  "name": "flick-finder",
+  "name": "movie-grid",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

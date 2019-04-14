@@ -1,5 +1,8 @@
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
+/**
+ * Styling for all the material-ui components
+ */
 const styles = theme => ({
   /* Header */
   root: {
@@ -28,7 +31,7 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 2,
     marginLeft: 0,
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('xs')]: {
       marginLeft: theme.spacing.unit * 3,
       width: 'auto',
     },
@@ -83,6 +86,7 @@ const styles = theme => ({
   /* MovieCard */
   card: {
     textAlign: 'left',
+    maxWidth: '100%',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -94,6 +98,7 @@ const styles = theme => ({
   },
   cardContent: {
     flexGrow: 1,
+    width: '100%',
     padding: '8px 16px 0 16px',
   },
   cardTitle: {
