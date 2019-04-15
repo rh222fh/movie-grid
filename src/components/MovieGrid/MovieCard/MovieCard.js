@@ -22,13 +22,13 @@ import placeholder from '../../../assets/placeholder.png';
 import { useAppState } from '../../../store';
 
 const MovieCard = ({ classes, movie }) => {
-  const { movieSearch } = useAppState();
+  const { movieGrid } = useAppState();
   const {
     handleFavoriteMovie,
     handleWatchLater,
     handleViewTrailer,
-  } = movieSearch;
-  const { savedMovies, watchLater } = movieSearch.state;
+  } = movieGrid;
+  const { savedMovies, watchLater } = movieGrid.state;
   return (
     <Grid zeroMinWidth item key={movie.id} xs={12} sm={6} md={4} lg={3}>
       <Card className={classes.card} elevation={2}>

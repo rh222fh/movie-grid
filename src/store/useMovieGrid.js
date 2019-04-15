@@ -18,7 +18,7 @@ const init = state => {
 
 const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 
-const useMovieSearch = () => {
+const useMovieGrid = () => {
   const [state, dispatch] = React.useReducer(reducer, initialState, init);
   const {
     searchInput,
@@ -143,4 +143,4 @@ const useMovieSearch = () => {
   };
 };
 
-export default useMovieSearch;
+export default useMovieGrid;

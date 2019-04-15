@@ -8,8 +8,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { FavoriteBorder } from '@material-ui/icons';
 
 const Favorites = ({ classes }) => {
-  const { movieSearch } = useAppState();
-  const { savedMovies } = movieSearch.state;
+  const { movieGrid } = useAppState();
+  const { savedMovies } = movieGrid.state;
 
   if (savedMovies.length === 0) {
     return (

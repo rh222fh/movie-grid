@@ -8,8 +8,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { WatchLaterOutlined } from '@material-ui/icons';
 
 const WatchLater = ({ classes }) => {
-  const { movieSearch } = useAppState();
-  const { watchLater } = movieSearch.state;
+  const { movieGrid } = useAppState();
+  const { watchLater } = movieGrid.state;
 
   if (watchLater.length === 0) {
     return (

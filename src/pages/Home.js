@@ -8,8 +8,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { Search } from '@material-ui/icons';
 
 const Home = ({ classes }) => {
-  const { movieSearch } = useAppState();
-  const { searchResult, containsResults } = movieSearch.state;
+  const { movieGrid } = useAppState();
+  const { searchResult, containsResults } = movieGrid.state;
 
   if (!containsResults) {
     return (

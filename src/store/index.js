@@ -1,10 +1,10 @@
 import React from 'react';
 import createContainer from 'constate';
-import useMovieSearch from './useMovieSearch';
+import useMovieGrid from './useMovieGrid';
 
 export const { Context, Provider } = createContainer(() => {
-  const movieSearch = useMovieSearch();
-  return { movieSearch };
+  const movieGrid = useMovieGrid();
+  return { movieGrid };
 });
 
 export const useAppState = () => {

@@ -7,9 +7,9 @@ import ModalVideo from 'react-modal-video';
 import { useAppState } from '../../store';
 
 const MovieGrid = ({ classes, movies }) => {
-  const { movieSearch } = useAppState();
-  const { handleTrailerClose } = movieSearch;
-  const { showModal, videoURL } = movieSearch.state;
+  const { movieGrid } = useAppState();
+  const { handleTrailerClose } = movieGrid;
+  const { showModal, videoURL } = movieGrid.state;
   return (
     <main>
       <Grid container spacing={24}>

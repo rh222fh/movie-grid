@@ -21,9 +21,9 @@ import { Link, withRouter, Redirect } from 'react-router-dom';
 import { useAppState } from '../../store';
 
 const Header = ({ classes, location }) => {
-  const { movieSearch } = useAppState();
-  const { handleMovieSearch, clearSearch } = movieSearch;
-  const { savedMovies, watchLater, searchInput } = movieSearch.state;
+  const { movieGrid } = useAppState();
+  const { handleMovieSearch, clearSearch } = movieGrid;
+  const { savedMovies, watchLater, searchInput } = movieGrid.state;
   const shouldRedirect = location.pathname !== '/' && searchInput.length > 0;
 
   return (
