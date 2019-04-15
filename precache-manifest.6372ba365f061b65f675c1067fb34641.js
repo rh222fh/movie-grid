@@ -8,23 +8,23 @@ self.__precacheManifest = [
     "url": "/movie-grid/static/js/runtime~main.f050e970.js"
   },
   {
-    "revision": "7221ea225e6ddae08d7e",
-    "url": "/movie-grid/static/js/main.c9c0b886.chunk.js"
+    "revision": "cd8d59a3747e112aa178",
+    "url": "/movie-grid/static/js/main.bbd0e49d.chunk.js"
   },
   {
     "revision": "c9c624f9b50e1921eca2",
     "url": "/movie-grid/static/js/2.d315a0f0.chunk.js"
   },
   {
-    "revision": "7221ea225e6ddae08d7e",
-    "url": "/movie-grid/static/css/main.4bb426fb.chunk.css"
+    "revision": "cd8d59a3747e112aa178",
+    "url": "/movie-grid/static/css/main.9a9c254f.chunk.css"
   },
   {
     "revision": "c9c624f9b50e1921eca2",
     "url": "/movie-grid/static/css/2.5c5a9cc4.chunk.css"
   },
   {
-    "revision": "5334f0f1635c6e079466815f2a82bc2c",
+    "revision": "8b144a8123dd892e9134212f17288a60",
     "url": "/movie-grid/index.html"
   }
 ];
