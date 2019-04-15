@@ -28,9 +28,9 @@ const MovieCard = ({ classes, movie }) => {
     handleWatchLater,
     handleViewTrailer,
   } = movieSearch;
-
+  const { savedMovies, watchLater } = movieSearch.state;
   return (
-    <Grid zeroMinWidth item key={movie.id} sm={6} md={4} lg={3}>
+    <Grid zeroMinWidth item key={movie.id} xs={12} sm={6} md={4} lg={3}>
       <Card className={classes.card} elevation={2}>
         <CardMedia
           className={classes.cardMedia}
@@ -67,7 +67,11 @@ const MovieCard = ({ classes, movie }) => {
               handleFavoriteMovie(movie);
             }}
           >
-            {movie.favorite ? <FavoriteActive /> : <FavoriteInactive />}
+            {savedMovies.find(m => m.id === movie.id) ? (
+              <FavoriteActive />
+            ) : (
+              <FavoriteInactive />
+            )}
           </IconButton>
           <Button
             size="small"
@@ -83,7 +87,11 @@ const MovieCard = ({ classes, movie }) => {
               handleWatchLater(movie);
             }}
           >
-            {movie.watchLater ? <WatchLaterActive /> : <WatchLaterInactive />}
+            {watchLater.find(m => m.id === movie.id) ? (
+              <WatchLaterActive />
+            ) : (
+              <WatchLaterInactive />
+            )}
           </IconButton>
         </CardActions>
       </Card>

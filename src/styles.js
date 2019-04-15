@@ -61,12 +61,13 @@ const styles = theme => ({
     },
   },
   sectionDesktop: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('xs')]: {
       display: 'flex',
     },
   },
   /* MovieGrid */
   layout: {
+    marginTop: 25,
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,

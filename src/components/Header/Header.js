@@ -29,7 +29,7 @@ const Header = ({ classes, location }) => {
   return (
     <div className={classes.root}>
       {shouldRedirect && <Redirect to="/" />}
-      <AppBar position="static">
+      <AppBar position="fixed" elevation={5}>
         <Toolbar>
           <IconButton
             component={Link}

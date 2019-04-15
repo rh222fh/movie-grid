@@ -59,8 +59,7 @@ const useMovieSearch = () => {
   };
 
   /**
-   * Fetches from TMDB when any changes are made to searchInput, savedMovies and watchLater state,
-   * the latter are included to update the button indicators when adding/removing to favorite/watch later.
+   * Fetches from TMDB when any changes are made to searchInput state,
    */
   React.useEffect(() => {
     if (searchInput === '') {
@@ -70,22 +69,20 @@ const useMovieSearch = () => {
     fetch(apiUrl)
       .then(response => response.json())
       .then(payload => {
-        let result = payload.results.map(movie => ({
+        console.log('payload :', payload);
+        /* let result = payload.results.map(movie => ({
           ...savedMovies.find(later => movie.id === later.id),
           ...watchLater.find(later => movie.id === later.id),
-          ...movie,
-        }));
-
-        dispatch({ type: 'setSearchResult', payload: result });
+          ...movie, */
+        dispatch({ type: 'setSearchResult', payload: payload.results });
       })
       .catch(error => console.log(error));
-  }, [searchInput, savedMovies, watchLater]);
+  }, [searchInput]);
 
   /**
    * Toggle between adding/removing favorite movie when clicking its icon.
    */
   const handleFavoriteMovie = movie => {
-    movie.favorite = true;
     if (savedMovies.find(m => m.id === movie.id)) {
       dispatch({ type: 'removeFavorite', payload: movie });
     } else {
@@ -97,7 +94,6 @@ const useMovieSearch = () => {
    * Toggle between adding/removing a movie in watch later when clicking its icon.
    */
   const handleWatchLater = movie => {
-    movie.watchLater = true;
     if (watchLater.find(m => m.id === movie.id)) {
       dispatch({ type: 'removeWatchLater', payload: movie });
     } else {
